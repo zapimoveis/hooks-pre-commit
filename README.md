@@ -31,7 +31,7 @@ mkdir -p ~/.git-templates/hooks
 
 </li>
 <li>
-Copy the ZAP hook standart indo your local folder (~/.git-templates/hooks).
+Copy the ZAP hook standart file into your local folder (~/.git-templates/hooks).
 </li>
 <li>
 Re-initialize git in each existing repo you'd like to use this in:
