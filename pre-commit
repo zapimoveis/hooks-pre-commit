@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Check if file some file may have AWS Keys (Screts/key);
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+    against=HEAD
+else
+    # Initial commit: diff against an empty tree object
+    EMPTY_TREE=$(git hash-object -t tree /dev/null)
+    against=$EMPTY_TREE
+fi
+
+# Redirect output to stderr.
+exec 1>&2
+ 
+# Check changed files for an AWS keys
+FILES=$(git diff --cached --name-only $against)
+
+if [ -n "$FILES" ]; then
+    KEY_ID=$(grep -E --line-number '[A-Za-z0-9]{20}' $FILES)
+    KEY=$(grep -E --line-number '[A-Za-z0-9\/+=]{40}' $FILES)
+
+    if [ -n "$KEY_ID" ] || [ -n "$KEY" ]; then
+		  echo "            "
+		  echo "                       tLLLLLLL,                                                                      "   
+		  echo "                     tLLLLLLLLLLi                                                                     "   
+		  echo "                    LLLLLLLLLLLLL                                                                     "   
+		  echo "                   1LLLLLLLLLLLLL,                                                                    "   
+		  echo "                  ,LLLLLLLLLLLLLL                                                                     "   
+		  echo "                  tLLLLLLLLLLLLL,                                                                     "   
+		  echo "                 .LLLLLLLfftttt      .tttttttttttttttt.      :1ttttttttttti,    :tttttt, itttttttt    "   
+		  echo " LLLLLL,        fLLLLttttttt.       ;tttttttttttttti     :ttttttttttttttttt.   1tttttttttttttttttti  "   
+		  echo " tLLLLLLL,     1LLLftttttt.         tttttttttttttt.    .ttttttttt11ttttttti     ;tttttttttttttttttt: "   
+		  echo "  ,LLLLLLLLLLLLLLLLttttt1                .fttttt:     ,ttttttt     ,tttttt,     ttttttt:    .tttttt: "   
+		  echo "    fLLLLLLLLLLLLLLttttt                1tttttt       tttttt1      1tttttt     :tttttt,      tttttt; "   
+		  echo "    ,tttttLLLLLLLLLLtttt              ,tttttt.       ;tttttt,     :tttttt:     ttttttt      :tttttt. "   
+		  echo "    1tttttttLLLLLLLLLttt;            tttttt;         itttttt1    1ttttttt     ,ttttttt.    1tttttt:  "   
+		  echo "   tttttttttfLLLLLLLLLttt:         ;tttttttttttttt,  :tttttttttttttttttt1     1tttttttttttttttttt,   "   
+		  echo "  ttttttttttt1fLLLLLLLLLtt:      .tttttttttttttttt    ;tttttttttttittttttt.  .ttttttttttttttttt1     "   
+		  echo "  tttttt1.      ,LLLLLLLLft.    1tttttttttttttttt;      ;tttttt1,  1tttttt   ;ttttt1 itttttt1.       "   
+		  echo "   ,:.            1LLLLLLLL;                                                  tttttt,                 "   
+		  echo "                    .LLLLLLi                                                 :tttttt                  "   
+		  echo "                       ,:                                                    tttttt;                  "   
+		  echo "                                                                            ,tttttt                   "   
+		  echo "                                                                            1ttttti     "
+		  echo "=========== Possible AWS Access Key IDs ==========="
+		  echo "${KEY_ID}"
+		  echo ""
+          
+		  echo "=========== Possible AWS Secret Access Keys ==========="
+		  echo "${KEY}"
+		  echo ""
+          
+		  exit 1;
+    fi
+fi
+
+# Normal exit
+exit 0
