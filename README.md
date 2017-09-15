@@ -8,10 +8,10 @@ Before starting to contribute in any of library that is on this github is necess
 ## Setup
 <ol>
 <li>
-Enable git templates:
+Clone the repository you will work
 </li>
 <li>
-Enable git templates:
+In your command line enable git templates (in the folder of the repo):
 
 ```
 git config init.templatedir '~/.git-templates'
