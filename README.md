@@ -1,9 +1,9 @@
 # hooks-pre-commit
-Pre-commit GIT hook for validate ZAP standart/rules commit
+Pre-commit GIT hook for validate ZAP standard/rules commit
 
 Before starting to contribute in any of library that is on this github is necessary to setup the pre-commit hook.
 
-**Note: If you don't install this pre-commit you may have your pull request denied because of some out of standart code (like forget some AWS Key or Secret Key in your code).**
+**Note: If you don't install this pre-commit you may have your pull request denied because of some out of standard code (like forget some AWS Key or Secret Key in your code).**
 
 ## Setup
 <ol>
@@ -31,7 +31,7 @@ mkdir -p ~/.git-templates/hooks
 
 </li>
 <li>
-Copy the ZAP hook standart file into your local folder (~/.git-templates/hooks).
+Copy the ZAP hook standard file into your local folder (~/.git-templates/hooks).
 </li>
 <li>
 Re-initialize git in each existing repo you'd like to use this in:
