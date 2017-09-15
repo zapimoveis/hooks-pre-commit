@@ -6,14 +6,12 @@ Before starting to contribute in any of library that is on this github is necess
 ** Note: If you don't install this pre-commit you may have your pull request denied because of some out of standart code (like forget some AWS Key or Secret Key in your code). **
 
 ## Setup
-
-<blockquote>
 <ol>
 <li>
-1. Enable git templates:
+Enable git templates:
 </li>
 <li>
-1. Enable git templates:
+Enable git templates:
 
 ```
 git config init.templatedir '~/.git-templates'
@@ -23,7 +21,7 @@ This tells git to copy everything in ~/.git-templates to your per-project .git/ 
 
 </li>
 <li>
-2. Create a directory to hold the global hooks:
+Create a directory to hold the global hooks:
 
 ```
 mkdir -p ~/.git-templates/hooks  (in windows your root directory will be something like c:\user\.git-templates)
@@ -31,10 +29,10 @@ mkdir -p ~/.git-templates/hooks  (in windows your root directory will be somethi
 
 </li>
 <li>
-3. Copy the ZAP hook standart indo your local folder (~/.git-templates/hooks).
+Copy the ZAP hook standart indo your local folder (~/.git-templates/hooks).
 </li>
 <li>
-4. Re-initialize git in each existing repo you'd like to use this in:
+Re-initialize git in each existing repo you'd like to use this in:
 
 ```
 git init
@@ -44,4 +42,3 @@ git init
 
 </li>
 </ol>
-</blockquote>
